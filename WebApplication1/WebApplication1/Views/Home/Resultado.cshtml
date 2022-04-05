@@ -9,10 +9,10 @@
     <title>Inicio</title>
 </head>
 <body>
-    @for (int i = 0; i < Model.Count; i++)
+    @foreach (Resposta r in Model)
     {
         <h1>Nomes</h1>
-        <p>@Model[i].Name</p>
+        <p>@r.Name</p>
     }
 
     <p>O número total de nomes cadastrados é: @Model.Count</p>
