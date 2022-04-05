@@ -19,9 +19,16 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost] //Enviar os dados
-        public IActionResult Pagina(Resposta resposta)
+        public void Pagina(Resposta resposta)
         {
+            string NomeAlterado = "Nome: " + resposta.Name + " alterado"; 
+            resposta.Name = NomeAlterado;
             BancoDados.respostas.Add(resposta);
+            Response.Redirect("Resultado");
+        }
+
+        public IActionResult Resultado()
+        {
             return View("Resultado", BancoDados.respostas);
         }
 
