@@ -6,30 +6,65 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
- 
+
         public IActionResult Index()
-        {            
+        {
             return View();
         }
 
+        //Carrega o formulario
         [HttpGet] //Pegar os dados
-        public IActionResult Pagina()
+        public IActionResult Formulario()
         {
-            return View("Pagina");
+            return View();
         }
 
         [HttpPost] //Enviar os dados
-        public void Pagina(Resposta resposta)
+        public void Formulario(Resposta resposta)
         {
-            string NomeAlterado = "Nome: " + resposta.Name + " alterado"; 
-            resposta.Name = NomeAlterado;
-            BancoDados.respostas.Add(resposta);
-            Response.Redirect("Resultado");
+            if (resposta.Name == null && resposta.Name == "" || resposta.Email == null)
+            {
+                Response.Redirect("Formulario");
+            }
+            else
+            {
+                if (BancoDados.VerificaContem(resposta.Email))
+                {
+                    Response.Redirect("Formulario");
+                    return;
+                }
+                
+                BancoDados.respostas.Add(resposta);
+                Response.Redirect("Resultado");
+
+            }
         }
 
         public IActionResult Resultado()
         {
             return View("Resultado", BancoDados.respostas);
+        }
+
+        /*
+        [HttpGet]
+        public IActionResult Excluir()
+        {
+            return View();
+        }*/
+
+        //[HttpPost]
+        public void Excluir(Resposta resposta)
+        {
+            int posicao = 0;
+            for (int i = 0; i < BancoDados.respostas.Count; i++)
+            {
+                if(BancoDados.respostas[i].Email == resposta.Email && BancoDados.respostas[i].Name == resposta.Name)
+                {
+                    posicao = i;
+                }
+            }
+            BancoDados.respostas.RemoveAt(posicao);
+            Response.Redirect("Resultado");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

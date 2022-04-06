@@ -9,13 +9,16 @@
         <title>Inicio</title>
     </head>
     <body>
-        <p>Responda: </p>
+        <p>Qual deseja excluir?</p>
         <form method="post">
             <label asp-for="Name">Seu nome: </label>
-            <input  asp-for="Name"/>
-            <input type="submit" value="Enviar" />
+            <input asp-for="Name"/>
+
+            <label asp-for="Email">Seu e-mail:</label>
+            <input asp-for="Email"/>
+
+            <input type="submit" value="Excluir" />
         </form>
-        <a asp-action="Index">Voltar</a>
-        <a asp-action="Resultado">Ver resultados</a>
+        <a asp-action="Index">Cancelar</a>
     </body>
 </html>

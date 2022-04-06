@@ -12,7 +12,8 @@
     @foreach (Resposta r in Model)
     {
         <h1>Nomes</h1>
-        <p>@r.Name</p>
+        <p>@r.Name <a asp-action="Excluir">Excluir</a></p>
+        <p>@r.Email</p>
     }
 
     <p>O número total de nomes cadastrados é: @Model.Count</p>
