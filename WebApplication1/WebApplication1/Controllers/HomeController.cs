@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
                     Response.Redirect("Formulario");
                     return;
                 }
-                
+
                 BancoDados.respostas.Add(resposta);
                 Response.Redirect("Resultado");
 
@@ -45,25 +45,33 @@ namespace WebApplication1.Controllers
             return View("Resultado", BancoDados.respostas);
         }
 
-        /*
+
         [HttpGet]
         public IActionResult Excluir()
         {
             return View();
-        }*/
+        }
 
-        //[HttpPost]
+        [HttpPost]
         public void Excluir(Resposta resposta)
         {
-            int posicao = 0;
+            int posicao = -1;
             for (int i = 0; i < BancoDados.respostas.Count; i++)
             {
-                if(BancoDados.respostas[i].Email == resposta.Email && BancoDados.respostas[i].Name == resposta.Name)
+                if (BancoDados.respostas[i].Email == resposta.Email && BancoDados.respostas[i].Name == resposta.Name)
                 {
                     posicao = i;
                 }
             }
-            BancoDados.respostas.RemoveAt(posicao);
+            if (posicao == -1)
+            {
+                Response.Redirect("Excluir");
+            }
+            else
+            {
+                BancoDados.respostas.RemoveAt(posicao);
+
+            }
             Response.Redirect("Resultado");
         }
 
