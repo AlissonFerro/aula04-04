@@ -1,0 +1,33 @@
+﻿@using WebApplication2.Models;
+@model List<Aluno>;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listagem</title>
+</head>
+<body>
+    <h1>Controle de Alunos</h1>
+    <hr />
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Curso</th>
+        </tr>
+
+        @foreach (var alunos in Model)
+        {
+            <tr>
+                <td>@alunos.Id</td>
+                <td>@alunos.Name</td>
+                <td>@alunos.Curso</td>
+            </tr>
+        }
+    </table>
+</body>
+
+</html>
