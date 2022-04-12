@@ -8,26 +8,31 @@
 <html>
 <head>
     <title>Listagem</title>
+    <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
     <h1>Controle de Alunos</h1>
     <hr />
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Curso</th>
-        </tr>
+    <div class="table">
 
-        @foreach (var alunos in Model)
-        {
+        <table>
             <tr>
-                <td>@alunos.Id</td>
-                <td>@alunos.Name</td>
-                <td>@alunos.Curso</td>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Curso</th>
             </tr>
-        }
-    </table>
+
+            @foreach (var alunos in Model)
+            {
+                <tr>
+                    <td>@alunos.Id</td>
+                    <td>@alunos.Name</td>
+                    <td>@alunos.Curso</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <a asp-action="Index">Voltar</a>
 </body>
 
 </html>

@@ -17,6 +17,18 @@ namespace WebApplication2.Controllers
             return View("Listagem",Aluno.listagem);
         }
 
+        public void Adicionar(Aluno aluno)
+        { 
+            aluno.Id = Aluno.listagem.Count +1;            
+            Aluno.listagem.Add(aluno);
+            Response.Redirect("Index");
+        }
+
+        public IActionResult Formulario()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

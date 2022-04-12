@@ -12,5 +12,12 @@
             Aluno.listagem.Add(new Aluno { Id = 2, Name = "Vinícius", Curso = "Mecatronica" });
             Aluno.listagem.Add(new Aluno { Id = 3, Name = "Andre", Curso = "Elétrica" });
         }
+
+        public void AdicionaAluno(Aluno aluno)
+        {
+            aluno.Id = listagem.Count;
+            listagem.Add(aluno);
+        }
+
     }
 }

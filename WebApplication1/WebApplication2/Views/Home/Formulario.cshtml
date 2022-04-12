@@ -1,0 +1,23 @@
+﻿@using WebApplication2.Models;
+@model Aluno;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Início</title>
+</head>
+<body>
+    <h1>Formulário</h1>
+    <form method="post">
+        <label asp-for="Name">Nome:</label>
+        <input asp-for="Name" />
+        <label asp-for="Curso">Curso</label>
+        <input asp-for="Curso"/>
+        <button asp-action="Adicionar">Salvar</button>
+    </form>
+</body>
+
+</html>

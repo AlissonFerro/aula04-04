@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wslHFEzdsVtxPKFMEIr/YFKfCzZRtbHckIfYr5QhNV4=",
+  "Hash": "tMxGskTt/ZesoZC0Q2RKFHdqYkkNUTlDbuD6iCNZbAs=",
   "Source": "WebApplication2",
   "BasePath": "_content/WebApplication2",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Aluno\\Documents\\GitHub\\aula04-04\\WebApplication1\\WebApplication2\\wwwroot\\css\\style.css",
+      "SourceId": "WebApplication2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Aluno\\Documents\\GitHub\\aula04-04\\WebApplication1\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/WebApplication2",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\Aluno\\Documents\\GitHub\\aula04-04\\WebApplication1\\WebApplication2\\wwwroot\\favicon.ico",
