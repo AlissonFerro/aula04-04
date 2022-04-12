@@ -27,10 +27,10 @@ namespace WebApplication2.Controllers
             }
             else
             {
-                Aluno alunoAtualizado = Aluno.listagem[aluno.Id];
+                Aluno alunoAtualizado = Aluno.listagem[aluno.Id-1];
                 alunoAtualizado.Name = aluno.Name;
                 alunoAtualizado.Curso = aluno.Curso;
-                Aluno.listagem[aluno.Id] = alunoAtualizado;
+                Aluno.listagem[aluno.Id-1] = alunoAtualizado;
                 Response.Redirect("Index");
             }
         }
@@ -42,7 +42,8 @@ namespace WebApplication2.Controllers
 
         public IActionResult FormularioEditar(int id)
         {
-            Aluno alunoEncontrado = Aluno.listagem[id];
+
+            Aluno alunoEncontrado = Aluno.listagem[id-1];
             return View("Formulario", alunoEncontrado);
         }
 
