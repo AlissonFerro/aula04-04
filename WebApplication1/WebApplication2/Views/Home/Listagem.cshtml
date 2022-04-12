@@ -13,6 +13,7 @@
 <body>
     <h1>Controle de Alunos</h1>
     <hr />
+    <a asp-action="Formulario"><button>Adicionar Aluno</button></a>
     <div class="table">
 
         <table>
@@ -28,11 +29,16 @@
                     <td>@alunos.Id</td>
                     <td>@alunos.Name</td>
                     <td>@alunos.Curso</td>
+                    <td>
+                        <a asp-route-id="@alunos.Id" asp-action="FormularioEditar">Id</a>
+
+                    </td>
+
                 </tr>
             }
         </table>
     </div>
-    <a asp-action="Index">Voltar</a>
+    <a asp-action="Index"><button>Voltar</button></a>
 </body>
 
 </html>

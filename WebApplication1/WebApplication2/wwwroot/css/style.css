@@ -20,6 +20,7 @@ hr{
 table {
     border-collapse: collapse;
     background: white;
+    margin:10px
 }
 
 table td {

@@ -11,13 +11,17 @@
 </head>
 <body>
     <h1>Formulário</h1>
+    <hr />
+
     <form method="post">
+        <input asp-for="Id" />
         <label asp-for="Name">Nome:</label>
         <input asp-for="Name" />
         <label asp-for="Curso">Curso</label>
         <input asp-for="Curso"/>
         <button asp-action="Adicionar">Salvar</button>
     </form>
+    <a asp-action="Index"><button>Voltar</button></a>
 </body>
 
 </html>
