@@ -1,0 +1,24 @@
+﻿@using WebApplication2.Models;
+@model Aluno;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Excluir</title>
+</head>
+<body>
+    <h1>Excluir</h1>
+    <hr />
+
+    <p>Você deseja excluir o Aluno @Model.Name?</p>
+    <form method="post" >
+        <input type="hidden" asp-for="Id" readonly="readonly" />
+        <button asp-route-id="@Model.Id" asp-action="ExcluirAluno">Excluir</button>
+    </form>
+    <a asp-action="Listar"><button>Cancelar</button></a>
+</body>
+
+</html>

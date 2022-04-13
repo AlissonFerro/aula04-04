@@ -22,6 +22,7 @@ namespace WebApplication2.Controllers
             if (aluno.Id == 0)
             {
                 aluno.Id = Aluno.listagem.Count + 1;
+                aluno.Ativo = true;
                 Aluno.listagem.Add(aluno);
                 Response.Redirect("Index");
             }
@@ -42,9 +43,20 @@ namespace WebApplication2.Controllers
 
         public IActionResult FormularioEditar(int id)
         {
-
             Aluno alunoEncontrado = Aluno.listagem[id-1];
             return View("Formulario", alunoEncontrado);
+        }
+
+        public IActionResult FormularioExcluir(int id)
+        {
+            Aluno alunoEncontrado = Aluno.listagem[id - 1];
+            return View("FormularioExcluir", alunoEncontrado);
+        }
+
+        public IActionResult ExcluirAluno(int id)
+        {
+            Aluno.listagem[id-1].Ativo = false;
+            return RedirectToAction("Listar");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

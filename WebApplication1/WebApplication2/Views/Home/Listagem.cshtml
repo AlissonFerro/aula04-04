@@ -25,17 +25,19 @@
             </tr>
 
             @foreach (var alunos in Model)
-            {                
+            {
+                @if(alunos.Ativo == true)
+                {                    
                 <tr>
                     <td>@alunos.Id</td>
                     <td>@alunos.Name</td>
                     <td>@alunos.Curso</td>
                     <td>
                         <a asp-route-id="@alunos.Id" asp-action="FormularioEditar">Editar</a>
-
+                        <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir">Excluir</a>
                     </td>
-
                 </tr>
+                }
             }
         </table>
     </div>
