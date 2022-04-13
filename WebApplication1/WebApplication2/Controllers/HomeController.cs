@@ -43,6 +43,20 @@ namespace WebApplication2.Controllers
 
         public IActionResult FormularioEditar(int id)
         {
+            bool resultado=false;
+            for (int i = 0; i < Aluno.listagem.Count; i++)
+            {
+                if(Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
+                {
+                    resultado = true;
+                }
+            }
+            if(!resultado)
+            {
+                string resposta = "Usuário não encontrado";
+                return View("Erro", resposta);
+            }
+
             Aluno alunoEncontrado = Aluno.listagem[id-1];
             return View("Formulario", alunoEncontrado);
         }
