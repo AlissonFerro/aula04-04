@@ -19,30 +19,33 @@ namespace WebApplication2.Controllers
 
         public IActionResult Adicionar(Aluno aluno)
         {
-            if (ModelState.IsValid)
-            {
 
-                if (aluno.Id == 0)
+            for (int i = 0; Aluno.listagem.Count > i; i++)
+            {
+                if (Aluno.listagem[i].Name == aluno.Name)
                 {
-                    aluno.Id = Aluno.listagem.Count + 1;
-                    aluno.Ativo = true;
-                    Aluno.listagem.Add(aluno);
-                    return View("Index");
+                    string resposta = "Aluno já cadastrado";
+                    return Content(resposta);
                 }
-                else
-                {
-                    Aluno alunoAtualizado = Aluno.listagem[aluno.Id - 1];
-                    alunoAtualizado.Name = aluno.Name;
-                    alunoAtualizado.Curso = aluno.Curso;
-                    Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
-                    return View("Index");
-                }
+            }
+            if (aluno.Id == 0)
+            {
+                aluno.Id = Aluno.listagem.Count + 1;
+                aluno.Ativo = true;
+                Aluno.listagem.Add(aluno);
+                return View("Index");
             }
             else
             {
-                string resposta = "Aluno não cadastrado";
-                return View("Erro", resposta);
+
+                Aluno alunoAtualizado = Aluno.listagem[aluno.Id - 1];
+                alunoAtualizado.Name = aluno.Name;
+                alunoAtualizado.Curso = aluno.Curso;
+                Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
+                return View("Index");
             }
+
+
         }
 
         public IActionResult Formulario()

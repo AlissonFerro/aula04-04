@@ -6,11 +6,9 @@ namespace WebApplication2.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "O nome é obrigatório")]
         public string Name { get; set; }
 
 
-        [Required(ErrorMessage ="O curso é obrigatório")]
         public string Curso { get; set; }
         public bool Ativo { get; set; }
         public static List<Aluno> listagem = new List<Aluno>();
