@@ -22,7 +22,7 @@ namespace WebApplication2.Controllers
 
             for (int i = 0; Aluno.listagem.Count > i; i++)
             {
-                if (Aluno.listagem[i].Name == aluno.Name)
+                if (Aluno.listagem[i].Name == aluno.Name && Aluno.listagem[i].Curso == aluno.Curso)
                 {
                     string resposta = "Aluno já cadastrado";
                     return Content(resposta);
