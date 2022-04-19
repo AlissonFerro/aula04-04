@@ -8,6 +8,8 @@
 <html>
 <head>
     <title>Excluir</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>Excluir</h1>
@@ -16,9 +18,9 @@
     <p>Você deseja excluir o Aluno @Model.Name?</p>
     <form method="post" >
         <input type="hidden" asp-for="Id" readonly="readonly" />
-        <button asp-route-id="@Model.Id" asp-action="ExcluirAluno">Excluir</button>
+        <button asp-route-id="@Model.Id" asp-action="ExcluirAluno" class="Excluir">Excluir</button>
     </form>
-    <a asp-action="Listar"><button>Cancelar</button></a>
+    <a asp-action="Listar"><button class="botaoPadrao">Cancelar</button></a>
 </body>
 
 </html>

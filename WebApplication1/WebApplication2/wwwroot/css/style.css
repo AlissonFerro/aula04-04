@@ -1,12 +1,15 @@
-﻿*{
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat';
     font-size: 1rem;
-    margin: 0px 20px
+    margin: 10px 10px
 }
 
 h1{
@@ -14,13 +17,54 @@ h1{
 }
 
 hr{
-    margin: 10px;
+    margin: 10px 0px;
+}
+
+body a{
+    text-decoration: none;
+    color: black;
+}
+
+.botaoPadrao {
+    padding: 10px;
+    background-color: grey;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0px;
+}
+
+.botaoIndex:hover {
+    color: black
+}
+
+.Editar {
+    padding: 10px;
+    background-color: rgb(51, 218, 255);
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.Excluir {
+    padding: 10px;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
 }
 
 table {
     border-collapse: collapse;
     background: white;
-    margin:10px
+    margin: 0px 10px;
+}
+
+table tr{
+    padding: 50px;
+    height: 60px
 }
 
 table td {
@@ -31,4 +75,9 @@ table td {
 table th {
     border: 1px solid black;
     background: white;
+}
+
+input {
+    height: 30px;
+    margin: 10px 0px;
 }

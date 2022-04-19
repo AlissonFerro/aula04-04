@@ -17,22 +17,31 @@ namespace WebApplication2.Controllers
             return View("Listagem", Aluno.listagem);
         }
 
-        public void Adicionar(Aluno aluno)
+        public IActionResult Adicionar(Aluno aluno)
         {
-            if (aluno.Id == 0)
+            if (ModelState.IsValid)
             {
-                aluno.Id = Aluno.listagem.Count + 1;
-                aluno.Ativo = true;
-                Aluno.listagem.Add(aluno);
-                Response.Redirect("Index");
+
+                if (aluno.Id == 0)
+                {
+                    aluno.Id = Aluno.listagem.Count + 1;
+                    aluno.Ativo = true;
+                    Aluno.listagem.Add(aluno);
+                    return View("Index");
+                }
+                else
+                {
+                    Aluno alunoAtualizado = Aluno.listagem[aluno.Id - 1];
+                    alunoAtualizado.Name = aluno.Name;
+                    alunoAtualizado.Curso = aluno.Curso;
+                    Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
+                    return View("Index");
+                }
             }
             else
             {
-                Aluno alunoAtualizado = Aluno.listagem[aluno.Id-1];
-                alunoAtualizado.Name = aluno.Name;
-                alunoAtualizado.Curso = aluno.Curso;
-                Aluno.listagem[aluno.Id-1] = alunoAtualizado;
-                Response.Redirect("Index");
+                string resposta = "Aluno não cadastrado";
+                return View("Erro", resposta);
             }
         }
 
@@ -43,33 +52,47 @@ namespace WebApplication2.Controllers
 
         public IActionResult FormularioEditar(int id)
         {
-            bool resultado=false;
+            bool resultado = false;
             for (int i = 0; i < Aluno.listagem.Count; i++)
             {
-                if(Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
+                if (Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
                 {
                     resultado = true;
                 }
             }
-            if(!resultado)
+            if (!resultado)
             {
                 string resposta = "Usuário não encontrado";
                 return View("Erro", resposta);
             }
 
-            Aluno alunoEncontrado = Aluno.listagem[id-1];
+            Aluno alunoEncontrado = Aluno.listagem[id - 1];
             return View("Formulario", alunoEncontrado);
         }
 
         public IActionResult FormularioExcluir(int id)
         {
+            bool resultado = false;
+            for (int i = 0; i < Aluno.listagem.Count; i++)
+            {
+                if (Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
+                {
+                    resultado = true;
+                }
+            }
+            if (!resultado)
+            {
+                string resposta = "Usuário não encontrado";
+                return View("Erro", resposta);
+            }
+
             Aluno alunoEncontrado = Aluno.listagem[id - 1];
             return View("FormularioExcluir", alunoEncontrado);
         }
 
         public IActionResult ExcluirAluno(int id)
         {
-            Aluno.listagem[id-1].Ativo = false;
+            Aluno.listagem[id - 1].Ativo = false;
             return RedirectToAction("Listar");
         }
 
