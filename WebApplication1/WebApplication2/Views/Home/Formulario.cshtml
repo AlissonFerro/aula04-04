@@ -9,25 +9,49 @@
 <head>
     <title>Início</title>
     <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/styleAluno.css" />
     <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>Formulário</h1>
     <hr />
 
-    <form method="post">
-    
-        <input type="hidden" asp-for="Id" />        
-        <label asp-for="Name">Nome: </label>
-        <input asp-for="Name" />
-        <label asp-for="Curso">Curso: </label>
-        <input asp-for="Curso" />
-        <label asp-for="Email">E-mail: </label>
-        <input asp-for="Email" />
-        
-        <label asp-for="Idade">Idade: </label>
-        <input asp-for="Idade" />
-        <button asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
+    <form class="form-Cadastrar" method="post">
+
+        @Html.AntiForgeryToken()
+        <div class="classInput">
+            <input type="hidden" asp-for="Id" />
+        </div>
+
+        <div class="classInput">
+            <label asp-for="Name">Nome: </label>
+            <input asp-for="Name" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="Curso">Curso: </label>
+            <input asp-for="Curso" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Curso)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="Email">E-mail:</label>
+            <input asp-for="Email" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="Idade">Idade: </label>
+            <input asp-for="Idade" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Idade)
+            </div>
+        </div>
+        <button asp-controller="Home" asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
     </form>
 
     <a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>

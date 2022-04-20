@@ -1,6 +1,6 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -8,21 +8,34 @@
 
 body {
     font-family: 'Montserrat';
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 10px 10px
 }
 
-h1{
-    text-align:center;
+h1 {
+    text-align: center;
 }
 
-hr{
+hr {
     margin: 10px 0px;
 }
 
-body a{
+body a {
     text-decoration: none;
     color: black;
+}
+
+.classInput {
+    display: flex;
+    margin-bottom: 15px;
+    align-content: flex-start;
+    align-items: baseline;
+}
+
+.error-danger {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
 }
 
 .botaoPadrao {
@@ -36,10 +49,10 @@ body a{
     transition: transform .5s;
 }
 
-.botaoPadrao:hover {
-    color: red;
-    transform: scale(1.1)
-}
+    .botaoPadrao:hover {
+        color: red;
+        transform: scale(1.1)
+    }
 
 .Editar {
     padding: 10px;
@@ -63,22 +76,26 @@ table {
     background: white;
 }
 
-table tr{
-    padding: 50px;
-    height: 60px
-}
+    table tr {
+        padding: 50px;
+        height: 60px;
+    }
 
-table td {
-    border: 1px solid black;
-    padding:0px 10px
-}
+    table td {
+        border: 1px solid black;
+        padding: 0px 10px;
+    }
 
-table th {
-    border: 1px solid black;
-    background: white;
-}
+    table th {
+        border: 1px solid black;
+        background: white;
+    }
 
 input {
-    height: 30px;
-    margin: 10px 0px;
+    height: 25px;
+    margin: 0px 10px;
+}
+
+.descricao{
+    margin: 20px 0px;
 }

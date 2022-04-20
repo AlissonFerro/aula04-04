@@ -1,0 +1,46 @@
+﻿@using WebApplication3.Models
+@model Aluno
+@{
+}
+
+<h1>Formulário</h1>
+<hr />
+@Html.ValidationSummary(true)
+<form method="post">
+
+    <div class="inputId" style="hideden">
+        @Html.HiddenFor(model => model.Id)
+    </div>
+
+    <div class="inputCurso">
+        @Html.LabelFor(model => model.Name)
+
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="inputCurso">
+        @Html.LabelFor(model => model.Curso)
+
+        @Html.EditorFor(model => model.Curso)
+        @Html.ValidationMessageFor(model => model.Curso)
+    </div>
+
+    <div class="inputEmail">
+        @Html.LabelFor(model => model.Email)
+
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="inputIdade">
+        @Html.LabelFor(model => model.Idade)
+
+        @Html.EditorFor(model => model.Idade)
+        @Html.ValidationMessageFor(model => model.Idade)
+    </div>
+
+    <button asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
+</form>
+
+<a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>

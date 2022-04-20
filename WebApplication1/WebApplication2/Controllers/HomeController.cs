@@ -17,9 +17,12 @@ namespace WebApplication2.Controllers
             return View("Listagem", Aluno.listagem);
         }
 
+
         public IActionResult Adicionar(Aluno aluno)
         {
-            if (aluno.Idade < 14)
+            
+            if (!ModelState.IsValid)
+            //if(aluno.Idade <14)
             {
                 return View("Formulario");
             }
@@ -70,8 +73,7 @@ namespace WebApplication2.Controllers
             }
             if (!resultado)
             {
-                string resposta = "Usuário não encontrado";
-                return View("Erro", resposta);
+                return View("Erro", "Usuário não encontrado");
             }
 
             Aluno alunoEncontrado = Aluno.listagem[id - 1];
@@ -101,7 +103,7 @@ namespace WebApplication2.Controllers
         public IActionResult ExcluirAluno(int id)
         {
             Aluno.listagem[id - 1].Ativo = false;
-            return RedirectToAction("Listar");
+            return RedirectToAction("ListarAlunos");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

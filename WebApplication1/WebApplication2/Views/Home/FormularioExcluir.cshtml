@@ -20,7 +20,7 @@
         <input type="hidden" asp-for="Id" readonly="readonly" />
         <button asp-route-id="@Model.Id" asp-action="ExcluirAluno" class="Excluir">Excluir</button>
     </form>
-    <a asp-action="Listar"><button class="botaoPadrao">Cancelar</button></a>
+    <a asp-controller="Home" asp-action="ListarAlunos"><button class="botaoPadrao">Cancelar</button></a>
 </body>
 
 </html>

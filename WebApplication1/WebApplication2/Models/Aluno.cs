@@ -1,16 +1,27 @@
-﻿namespace WebApplication2.Models
+﻿//using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication2.Models
 {
     public class Aluno
     {
-        
+        //[Required()]
         public int Id { get; set; }
 
+
+
+
+        [Required(ErrorMessage = "O Nome precisa ser preenchido")]
         public string Name { get; set; }
- 
+
+        [Required(ErrorMessage = "O Curso é obrigatória")]
         public string Curso { get; set; }
 
+        [Required(ErrorMessage = "O E-mail é obrigatória")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Idade é obrigatória")]
+        [Range(14, 100, ErrorMessage = "A idade deve ser maior do que 14")]
         public int Idade { get; set; }
 
         public bool Ativo { get; set; }

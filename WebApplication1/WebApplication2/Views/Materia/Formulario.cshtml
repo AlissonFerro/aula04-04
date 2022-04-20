@@ -1,0 +1,60 @@
+﻿@using WebApplication2.Models;
+@model Materia;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Início</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/styleDisciplina.css" />
+    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Formulário</h1>
+    <hr />
+    <form class="form-Cadastrar" method="post">
+    @Html.ValidationSummary(true)
+        <div class="valid-feedback"></div>
+
+        <div class="classInput">
+            <input type="hidden" asp-for="Id" />
+        </div>
+
+        <div class="classInput">
+            <label asp-for="Name">Nome: </label>
+            <input asp-for="Name" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="Professor">Professor: </label>
+            <input asp-for="Professor" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.Professor)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="CargaHorario">Carga Horária:</label>
+            <input asp-for="CargaHorario" />
+            <div class="error-danger">
+                @Html.ValidationMessageFor(m => m.CargaHorario)
+            </div>
+        </div>
+        <div class="classInput">
+            <label asp-for="Descricao">Descricao: </label>
+            <input asp-for="Descricao" />
+            <div class="error-danger">
+
+            </div>
+        </div>
+        <button asp-controller="Materia" asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
+    </form>
+
+    <a asp-controller="Home" asp-action="Index"><button class="botaoPadrao">Voltar</button></a>
+</body>
+
+</html>
