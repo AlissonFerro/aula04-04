@@ -16,11 +16,17 @@
     <hr />
 
     <form method="post">
-        <input type="hidden" asp-for="Id" readonly="readonly"/>
+    
+        <input type="hidden" asp-for="Id" />        
         <label asp-for="Name">Nome: </label>
         <input asp-for="Name" />
         <label asp-for="Curso">Curso: </label>
-        <input asp-for="Curso"/>
+        <input asp-for="Curso" />
+        <label asp-for="Email">E-mail: </label>
+        <input asp-for="Email" />
+        
+        <label asp-for="Idade">Idade: </label>
+        <input asp-for="Idade" />
         <button asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
     </form>
 

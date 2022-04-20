@@ -1,0 +1,49 @@
+﻿@using WebApplication2.Models;
+@model List<Materia>;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listagem</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Controle de Disciplinas</h1>
+    <hr />
+    <a asp-action="Formulario"><button class="botaoPadrao">Adicionar Disciplina</button></a>
+    <div class="table">
+
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Professor</th>
+                <th>Carga Horaria</th>
+                <th>Ação</th>
+            </tr>
+
+            @foreach (var disciplina in Model)
+            {
+                                   
+                <tr>
+                    <td>@disciplina.Id</td>
+                    <td>@disciplina.Name</td>
+                    <td>@disciplina.Professor</td>
+                    <td>@disciplina.CargaHorario</td>
+                    <td>
+                        <a asp-route-id="@disciplina.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
+                        <a asp-route-id="@disciplina.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                    </td>
+                </tr>
+               
+            }
+        </table>
+    </div>
+    <a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>
+</body>
+
+</html>

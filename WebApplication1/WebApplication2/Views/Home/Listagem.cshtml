@@ -22,6 +22,8 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Curso</th>
+                <th>E-mail</th>
+                <th>Idade</th>
                 <th>Ação</th>
             </tr>
 
@@ -33,6 +35,8 @@
                     <td>@alunos.Id</td>
                     <td>@alunos.Name</td>
                     <td>@alunos.Curso</td>
+                    <td>@alunos.Email</td>
+                    <td>@alunos.Idade</td>
                     <td>
                         <a asp-route-id="@alunos.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
                         <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>

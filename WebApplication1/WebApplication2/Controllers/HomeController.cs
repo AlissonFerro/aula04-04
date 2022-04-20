@@ -12,17 +12,21 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public IActionResult Listar()
+        public IActionResult ListarAlunos()
         {
             return View("Listagem", Aluno.listagem);
         }
 
         public IActionResult Adicionar(Aluno aluno)
         {
-
+            if (aluno.Idade < 14)
+            {
+                return View("Formulario");
+            }
+            
             for (int i = 0; Aluno.listagem.Count > i; i++)
             {
-                if (Aluno.listagem[i].Name == aluno.Name && Aluno.listagem[i].Curso == aluno.Curso)
+                if (Aluno.listagem[i].Email == aluno.Email && aluno.Id != Aluno.listagem[i].Id)
                 {
                     string resposta = "Aluno já cadastrado";
                     return Content(resposta);
@@ -33,16 +37,17 @@ namespace WebApplication2.Controllers
                 aluno.Id = Aluno.listagem.Count + 1;
                 aluno.Ativo = true;
                 Aluno.listagem.Add(aluno);
-                return View("Index");
+                return View("Listagem", Aluno.listagem);
             }
             else
             {
-
                 Aluno alunoAtualizado = Aluno.listagem[aluno.Id - 1];
                 alunoAtualizado.Name = aluno.Name;
                 alunoAtualizado.Curso = aluno.Curso;
+                alunoAtualizado.Idade = aluno.Idade;
+                alunoAtualizado.Email = aluno.Email;
                 Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
-                return View("Index");
+                return View("Listagem", Aluno.listagem);
             }
 
 
