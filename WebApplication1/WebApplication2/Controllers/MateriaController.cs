@@ -27,7 +27,7 @@ namespace WebApplication2.Controllers
             }
             if (!resultado)
             {
-                return View("Erro", "Materia não encontrada");
+                return View("Erro", "Disciplina não encontrada");
             }
             Materia materiaEncontrada = Materia.listagemMaterias[Id-1];
             return View("Descricao", materiaEncontrada);
@@ -40,14 +40,14 @@ namespace WebApplication2.Controllers
 
         public IActionResult Adicionar(Materia materia)
         {
-            //if (!ModelState.IsValid)
-            if(materia.CargaHorario<5)
+            ModelState.Remove("Id");
+            if (!ModelState.IsValid)
             {
                 return View("Formulario");
             }
             for (int i = 0; i < Materia.listagemMaterias.Count; i++)
             {
-                if(Materia.listagemMaterias[i].Name == materia.Name)
+                if(Materia.listagemMaterias[i].Name == materia.Name && materia.Id != Materia.listagemMaterias[i].Id)
                 {
                     return Content("Disciplina já cadastrada");
                 }
@@ -69,8 +69,54 @@ namespace WebApplication2.Controllers
                 materiaAtualizada.Name = materia.Name;
                 Materia.listagemMaterias[materia.Id-1] = materiaAtualizada;
                 return View("Listagem", Materia.listagemMaterias);
-            }
-            
+            }            
         } 
+
+        public IActionResult FormularioEditar(int id)
+        {
+            bool resultado = false;
+
+            for (int i = 0; i < Materia.listagemMaterias.Count; i++)
+            {
+                if(Materia.listagemMaterias[i].Id == id && Materia.listagemMaterias[i].Ativo == true)
+                {
+                    resultado = true; break;
+                }
+            }
+            if (!resultado)
+            {
+                return View("Erro", "Disciplina não encontrada");
+            }
+
+            Materia materiaEncontrada = Materia.listagemMaterias[id - 1];
+            return View("Formulario", materiaEncontrada);
+        }
+
+        public IActionResult FormularioExcluir(int id)
+        {
+            bool resultado = false;
+            for (int i = 0; i < Materia.listagemMaterias.Count; i++)
+            {
+                if(Materia.listagemMaterias[i].Id == id && Materia.listagemMaterias[i].Ativo == true)
+                {
+                    resultado = true;
+                }
+            }
+            if (!resultado)
+            {
+                return View("Erro", "Disciplina não encontrada");
+            }
+            Materia materiaEncontrada = Materia.listagemMaterias[id - 1];
+            return View("FormularioExcluir", materiaEncontrada);
+        }
+
+
+
+        public IActionResult Excluir(int id)
+        {
+            Materia.listagemMaterias[id-1].Ativo = false;
+            return RedirectToAction("ListarMaterias", Materia.listagemMaterias);
+        }
+
     }
 }

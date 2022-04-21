@@ -24,8 +24,11 @@
         </div>
 
         <div class="classInput">
+            @Html.LabelFor(m => m.Name);
+
             <label asp-for="Name">Nome: </label>
             <input asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
             <div class="error-danger">
                 @Html.ValidationMessageFor(m => m.Name)
             </div>

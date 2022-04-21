@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 using System.Diagnostics;
 using WebApplication2.Models;
 
@@ -18,11 +19,11 @@ namespace WebApplication2.Controllers
         }
 
 
-        public IActionResult Adicionar(Aluno aluno)
+        public ActionResult Adicionar(Aluno aluno)
         {
-            
+
+            ModelState.Remove("Id");
             if (!ModelState.IsValid)
-            //if(aluno.Idade <14)
             {
                 return View("Formulario");
             }
@@ -52,8 +53,6 @@ namespace WebApplication2.Controllers
                 Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
                 return View("Listagem", Aluno.listagem);
             }
-
-
         }
 
         public IActionResult Formulario()

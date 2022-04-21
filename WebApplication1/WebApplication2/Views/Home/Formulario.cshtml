@@ -18,8 +18,9 @@
 
     <form class="form-Cadastrar" method="post">
 
-        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
         <div class="classInput">
+
             <input type="hidden" asp-for="Id" />
         </div>
 
@@ -27,28 +28,28 @@
             <label asp-for="Name">Nome: </label>
             <input asp-for="Name" />
             <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Name)
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
         <div class="classInput">
             <label asp-for="Curso">Curso: </label>
             <input asp-for="Curso" />
             <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Curso)
+                <span asp-validation-for="Curso" class="text-danger"></span>
             </div>
         </div>
         <div class="classInput">
             <label asp-for="Email">E-mail:</label>
             <input asp-for="Email" />
             <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Email)
+            <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
         <div class="classInput">
             <label asp-for="Idade">Idade: </label>
             <input asp-for="Idade" />
             <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Idade)
+                <span asp-validation-for="Idade" class="text-danger"></span>
             </div>
         </div>
         <button asp-controller="Home" asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
