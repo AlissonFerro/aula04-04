@@ -1,36 +1,27 @@
 ﻿@using WebApplication2.Models;
 @model List<Aluno>;
 @{
-    Layout = null;
+    ViewData["Title"] = "Listar";
+    ViewData["Name"] = "Lista de Alunos";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Listagem</title>
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1>Controle de Alunos</h1>
-    <hr />
-    <a asp-action="Formulario"><button class="botaoPadrao">Adicionar Aluno</button></a>
-    <div class="table">
+<a asp-action="Formulario"><button class="botaoPadrao">Adicionar Aluno</button></a>
+<div class="table">
 
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Curso</th>
-                <th>E-mail</th>
-                <th>Idade</th>
-                <th>Ação</th>
-            </tr>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Curso</th>
+            <th>E-mail</th>
+            <th>Idade</th>
+            <th>Ação</th>
+        </tr>
 
-            @foreach (var alunos in Model)
+        @foreach (var alunos in Model)
+        {
+            @if (alunos.Ativo == true)
             {
-                @if(alunos.Ativo == true)
-                {                    
                 <tr>
                     <td>@alunos.Id</td>
                     <td>@alunos.Name</td>
@@ -42,11 +33,7 @@
                         <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                     </td>
                 </tr>
-                }
             }
-        </table>
-    </div>
-    <a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>
-</body>
-
-</html>
+        }
+    </table>
+</div>

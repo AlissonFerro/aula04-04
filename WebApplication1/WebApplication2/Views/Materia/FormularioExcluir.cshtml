@@ -1,26 +1,14 @@
 ﻿@using WebApplication2.Models;
 @model Materia;
 @{
-    Layout = null;
+    ViewData["Title"] = "Excluir";
+    ViewData["Name"] = "Excluir Disciplina";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Excluir</title>
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1>Excluir</h1>
-    <hr />
 
-    <p>Você deseja excluir a Disciplina @Model.Name?</p>
-    <form method="post" >
-        <input type="hidden" asp-for="Id" readonly="readonly" />
-        <button asp-route-id="@Model.Id" asp-controller="Materia" asp-action="Excluir" class="Excluir">Excluir</button>
-    </form>
-    <a asp-controller="Materia" asp-action="ListarMaterias"><button class="botaoPadrao">Cancelar</button></a>
-</body>
-
-</html>
+<p>Você deseja excluir a Disciplina @Model.Name?</p>
+<form method="post">
+    <input type="hidden" asp-for="Id" readonly="readonly" />
+    <button asp-route-id="@Model.Id" asp-controller="Materia" asp-action="Excluir" class="Excluir">Excluir</button>
+</form>
+<a asp-controller="Materia" asp-action="ListarMaterias"><button class="botaoPadrao">Cancelar</button></a>

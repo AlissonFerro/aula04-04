@@ -1,34 +1,25 @@
 ﻿@using WebApplication2.Models;
 @model Materia;
 @{
-    Layout = null;
+    ViewData["Title"] = "Descrição";
+    ViewData["Name"] = "Descrição da Disciplina";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Listagem</title>
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="https://kit.fontawesome.com/d58dc20345.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1>Controle de Disciplinas</h1>
-    <hr />
-        <div class="descricao">
 
-            <p>Id: @Model.Id</p>
+<div class="descricao">
 
-            <p>Nome: @Model.Name</p>
+    <p>Id: @Model.Id</p>
 
-            <p>Professor: @Model.Professor</p>
+    <p>Nome: @Model.Name</p>
 
-            <p>Carga Horária: @Model.CargaHorario</p>
+    <p>Professor: @Model.Professor</p>
 
-            <p>Descrição: @Model.Descricao</p>
-        </div>
-        <a asp-route-id="@Model.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
-        <a asp-route-id="@Model.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a><br/><br />
-    <a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>
-</body>
+    <p>Carga Horária: @Model.CargaHorario</p>
 
-</html>
+    <p>Descrição: @Model.Descricao</p>
+</div>
+<a asp-route-id="@Model.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
+<a asp-route-id="@Model.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+<br />
+<br />
+<a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>

@@ -9,11 +9,7 @@ namespace WebApplication2.Controllers
         {
             return View("Listagem", Materia.listagemMaterias);
         }
-        /*
-        public void Index()
-        {
-            return RedirectToAction(HomeController.Index());
-        }*/
+        
 
         public IActionResult Descricao(int Id)
         {

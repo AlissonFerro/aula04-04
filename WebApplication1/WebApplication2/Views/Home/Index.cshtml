@@ -1,21 +1,11 @@
 ﻿@using WebApplication2.Models;
 @{
-    Layout = null;
+    ViewData["Title"] = "Início";
+    ViewData["Name"] = "Controle Escolar";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="~/css/style.css"/>
-    <title>Início</title>
-</head>
-<body>
-    <h1>Controle de Alunos</h1>
-    <hr />
-    <a asp-controller="Home" asp-action="ListarAlunos" class="botaoPadrao">Acessar Alunos</a>
-    <a asp-controller="Home" asp-action="Formulario" class="botaoPadrao">Adicionar Aluno</a>
-    <a asp-controller="Materia" asp-action="ListarMaterias" class="botaoPadrao">Acessar Disciplinas</a>
-    <a asp-controller="Materia" asp-action="Formulario" class="botaoPadrao">Adicionar Disciplinas</a>
-</body>
+<a asp-controller="Home" asp-action="ListarAlunos" class="botaoPadrao">Acessar Alunos</a>
+<a asp-controller="Home" asp-action="Formulario" class="botaoPadrao">Adicionar Aluno</a>
+<a asp-controller="Materia" asp-action="ListarMaterias" class="botaoPadrao">Acessar Disciplinas</a>
+<a asp-controller="Materia" asp-action="Formulario" class="botaoPadrao">Adicionar Disciplinas</a>
 
-</html>

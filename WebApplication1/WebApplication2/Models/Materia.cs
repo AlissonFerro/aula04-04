@@ -15,7 +15,7 @@ namespace WebApplication2.Models
         public string Professor { get; set; }
 
         [Required(ErrorMessage = "A disciplina precisa de uma carga horária")]
-        [Range(5,1000, ErrorMessage ="A carga horária precisa ser maior do que 4")]
+        [Range(5,1000, ErrorMessage ="A carga horária precisa ser maior do que 5")]
         public int CargaHorario { get; set; }
         public string Descricao { get; set; }
         public bool Ativo { get; set; }

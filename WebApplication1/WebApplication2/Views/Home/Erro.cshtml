@@ -1,18 +1,8 @@
 ﻿@using WebApplication2.Models;
 @{
-    Layout = null;
+    ViewData["Title"] = "Erro";
+    ViewData["Name"] = "Erro";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="~/css/style.css"/>
-    <title>Erro</title>
-</head>
-<body>
-    <h1>Controle de Alunos</h1>
-    <hr />
-    <p>@Model</p>
-    <a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>
-</body>
-</html>
+<p>@Model</p>
+<a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>
