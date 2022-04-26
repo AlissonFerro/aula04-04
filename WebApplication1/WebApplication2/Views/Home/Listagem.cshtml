@@ -1,8 +1,8 @@
 ﻿@using WebApplication2.Models;
 @model List<Aluno>;
 @{
-    ViewData["Title"] = "Listar";
-    ViewData["Name"] = "Lista de Alunos";
+    ViewBag.Titulo = "Listar";
+    ViewBag.Name = "Lista de Alunos";
 }
 
 <a asp-action="Formulario"><button class="botaoPadrao">Adicionar Aluno</button></a>

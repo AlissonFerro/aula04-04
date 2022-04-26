@@ -76,6 +76,7 @@ namespace WebApplication2.Controllers
             }
 
             Aluno alunoEncontrado = Aluno.listagem[id - 1];
+            ViewBag.Name = "Editar Aluno";
             return View("Formulario", alunoEncontrado);
         }
 
@@ -96,6 +97,7 @@ namespace WebApplication2.Controllers
             }
 
             Aluno alunoEncontrado = Aluno.listagem[id - 1];
+            ViewBag.Name = "Excluir Aluno";
             return View("FormularioExcluir", alunoEncontrado);
         }
 
