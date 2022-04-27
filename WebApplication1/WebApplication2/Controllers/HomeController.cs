@@ -25,9 +25,10 @@ namespace WebApplication2.Controllers
             ModelState.Remove("Id");
             if (!ModelState.IsValid)
             {
+
                 return View("Formulario");
             }
-            
+
             for (int i = 0; Aluno.listagem.Count > i; i++)
             {
                 if (Aluno.listagem[i].Email == aluno.Email && aluno.Id != Aluno.listagem[i].Id)
@@ -41,6 +42,8 @@ namespace WebApplication2.Controllers
                 aluno.Id = Aluno.listagem.Count + 1;
                 aluno.Ativo = true;
                 Aluno.listagem.Add(aluno);
+                TempData["Alterado"] = true;
+                TempData["Mensagem"] = "Aluno cadastrado com sucesso";
                 return View("Listagem", Aluno.listagem);
             }
             else
@@ -50,6 +53,8 @@ namespace WebApplication2.Controllers
                 alunoAtualizado.Curso = aluno.Curso;
                 alunoAtualizado.Idade = aluno.Idade;
                 alunoAtualizado.Email = aluno.Email;
+                TempData["Alterado"] = true;
+                TempData["Mensagem"] = "Aluno alterado com sucesso";
                 Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
                 return View("Listagem", Aluno.listagem);
             }
@@ -57,6 +62,7 @@ namespace WebApplication2.Controllers
 
         public IActionResult Formulario()
         {
+
             return View();
         }
 
@@ -103,6 +109,8 @@ namespace WebApplication2.Controllers
 
         public IActionResult ExcluirAluno(int id)
         {
+            TempData["Alterado"] = true;
+            TempData["Mensagem"] = "Aluno excluído com sucesso";
             Aluno.listagem[id - 1].Ativo = false;
             return RedirectToAction("ListarAlunos");
         }

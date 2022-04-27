@@ -1,0 +1,39 @@
+﻿@using WebApplication2.Models;
+@model Livro;
+@{
+    ViewBag.Titulo = "Formulário";
+
+}
+
+
+<form class="form-Cadastrar" method="post">
+
+    <div class="classInput">
+        <input type="hidden" asp-for="Id" />
+    </div>
+
+    <div class="classInput">
+        <label asp-for="Nome">Nome: </label>
+        <input asp-for="Nome" />
+        <div class="error-danger">
+            @Html.ValidationMessageFor(m => m.Nome)
+        </div>
+    </div>
+    <div class="classInput">
+        <label asp-for="Preco">Preço: </label>
+        <input asp-for="Preco" />
+        <div class="error-danger">
+            @Html.ValidationMessageFor(m => m.Preco)
+        </div>
+    </div>
+    <div class="classInput">
+        <label asp-for="QtdPag">Quantidade de páginas:</label>
+        <input asp-for="QtdPag" />
+        <div class="error-danger">
+            @Html.ValidationMessageFor(m => m.QtdPag)
+        </div>
+    </div>
+    <button asp-controller="Livro" asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
+</form>
+
+<a asp-controller="Home" asp-action="Index"><button class="botaoPadrao">Voltar</button></a>

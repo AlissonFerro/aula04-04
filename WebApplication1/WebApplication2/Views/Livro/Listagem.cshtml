@@ -1,0 +1,47 @@
+﻿@using WebApplication2.Models;
+@model List<Livro>;
+@{
+    ViewBag.Titulo = "Listar";
+    ViewBag.Name = "Lista de Livros";
+}
+
+<a asp-action="Formulario"><button class="botaoPadrao">Adicionar Livro</button></a>
+
+    @if (TempData.ContainsKey("Alterado"))
+    {
+        bool valor = (bool)TempData["Alterado"];
+        if (valor)
+        {
+            <p>@TempData["Mensagem"]</p>
+        }
+    }
+<div class="table">
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade de páginas</th>
+            <th>Ação</th>
+        </tr>
+
+        @foreach (var livro in Model)
+        {
+            @if (livro.Ativo == true)
+            {
+                <tr>
+                    <td>@livro.Id</td>
+                    <td>@livro.Nome</td>
+                    <td>@livro.Preco</td>
+                    <td>@livro.QtdPag</td>
+                    <td>
+                        <a asp-route-id="@livro.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
+                        <a asp-route-id="@livro.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>

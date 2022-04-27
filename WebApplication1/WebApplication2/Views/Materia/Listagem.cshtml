@@ -7,6 +7,14 @@
 
 
 <a asp-action="Formulario"><button class="botaoPadrao">Adicionar Disciplina</button></a>
+    @if (TempData.ContainsKey("Alterado"))
+    {
+        bool valor = (bool)TempData["Alterado"];
+        if (valor)
+        {
+            <p>@TempData["Mensagem"]</p>
+        }
+    }
 <div class="table">
 
     <table>

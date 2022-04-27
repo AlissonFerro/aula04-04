@@ -110,6 +110,8 @@ namespace WebApplication2.Controllers
 
         public IActionResult Excluir(int id)
         {
+            TempData["Alterado"] = true;
+            TempData["Mensagem"] = "Matéria excluida com sucesso";
             Materia.listagemMaterias[id-1].Ativo = false;
             return RedirectToAction("ListarMaterias", Materia.listagemMaterias);
         }

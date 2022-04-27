@@ -5,11 +5,7 @@ namespace WebApplication2.Models
 {
     public class Aluno
     {
-        //[Required()]
-        public int Id { get; set; }
-
-
-
+         public int Id { get; set; }
 
         [Required(ErrorMessage = "O Nome precisa ser preenchido")]
         public string Name { get; set; }

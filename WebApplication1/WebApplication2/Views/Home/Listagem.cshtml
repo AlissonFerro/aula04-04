@@ -8,6 +8,15 @@
 <a asp-action="Formulario"><button class="botaoPadrao">Adicionar Aluno</button></a>
 <div class="table">
 
+    @if (TempData.ContainsKey("Alterado"))
+    {
+        bool valor = (bool)TempData["Alterado"];
+        if (valor)
+        {
+            <p>@TempData["Mensagem"]</p>
+        }
+    }
+
     <table>
         <tr>
             <th>Id</th>
@@ -37,3 +46,4 @@
         }
     </table>
 </div>
+<a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>

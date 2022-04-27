@@ -1,0 +1,14 @@
+﻿@using WebApplication2.Models;
+@model Livro;
+@{
+    ViewBag.Titulo = "Excluir";
+    ViewBag.Name = "Excluir Disciplina";
+}
+
+
+<p>Você deseja excluir o Livro @Model.Nome?</p>
+<form method="post">
+    <input type="hidden" asp-for="Id" readonly="readonly" />
+    <button asp-route-id="@Model.Id" asp-controller="Livro" asp-action="Excluir" class="Excluir">Excluir</button>
+</form>
+<a asp-controller="Livro" asp-action="ListarLivros"><button class="botaoPadrao">Cancelar</button></a>

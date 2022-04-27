@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Bwczz2qmdVSvkXDn7jgJSXOT9Bt/AXJAkrOSSpssRD4BpM1msHYMuC7m0WuohFgwjxLyTqm9sTnO5rGKQE2wng==",
+  "dgSpecHash": "dlnv+qPRnLNBF41gpl4OA8VjTdjT3w9Mgg9WurW9ZTBw07AUPTgZUmnIIXi7j4qpvVy53gI93YWUvX/as5zV0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Aluno\\Documents\\GitHub\\aula04-04\\WebApplication1\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
-    "C:\\Users\\Aluno\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\stackexchange.redis\\2.5.61\\stackexchange.redis.2.5.61.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
