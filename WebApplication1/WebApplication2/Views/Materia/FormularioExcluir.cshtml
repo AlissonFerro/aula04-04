@@ -9,6 +9,8 @@
 <p>Você deseja excluir a Disciplina @Model.Name?</p>
 <form method="post">
     <input type="hidden" asp-for="Id" readonly="readonly" />
-    <button asp-route-id="@Model.Id" asp-controller="Materia" asp-action="btn btn-warning" class="Excluir">Excluir</button>
+    <div class="d-grid gap-2 d-md-block mb-2">
+        <button asp-route-id="@Model.Id" asp-controller="Materia" asp-action="Excluir" class="btn btn-danger">Excluir</button>
+        <a asp-controller="Materia" asp-action="ListarMaterias"><button class="btn btn-secondary">Cancelar</button></a>
+    </div>
 </form>
-<a asp-controller="Materia" asp-action="ListarMaterias"><button class="btn btn-secondary">Cancelar</button></a>

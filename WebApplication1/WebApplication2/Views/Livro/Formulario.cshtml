@@ -17,7 +17,7 @@
             <div class="col">
 
                 <div class="mb-3">
-                    <label class="form-label" asp-for="Nome">Nome: </label>
+                    <label class="col-sm-5 col-form-label" asp-for="Nome">Nome: </label>
                     <input class="form-control" id="formGroupExampleInput" asp-for="Nome" />
                     <div class="error-danger">
                         @Html.ValidationMessageFor(m => m.Nome)
@@ -26,7 +26,7 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label" asp-for="Preco">Preço: </label>
+                    <label class="col-sm-5 col-form-label" asp-for="Preco">Preço: </label>
                     <input class="form-control" id="formGroupExampleInput" asp-for="Preco" />
                     <div class="error-danger">
                         @Html.ValidationMessageFor(m => m.Preco)
@@ -35,7 +35,7 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label" asp-for="QtdPag">Quantidade de páginas:</label>
+                    <label class="col-sm-5 col-form-label" asp-for="QtdPag">Quantidade de páginas:</label>
                     <input class="form-control" id="formGroupExampleInput" asp-for="QtdPag" />
                     <div class="error-danger">
                         @Html.ValidationMessageFor(m => m.QtdPag)
@@ -45,7 +45,7 @@
         </div>
 
         <div class="d-grid gap-2 d-md-block mb-2">
-            <button asp-controller="Livro" asp-action="Adicionar" class="btn btn-info"><i class="fa-solid fa-pen"></i> Adicionar</button>
+            <button asp-controller="Livro" asp-action="Adicionar" class="btn btn-success"><i class="fa-solid fa-pen"></i> Adicionar</button>
             <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar</a>
         </div>
     </form>

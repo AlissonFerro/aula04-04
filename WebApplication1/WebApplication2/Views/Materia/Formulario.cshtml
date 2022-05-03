@@ -14,42 +14,57 @@
 
     <div class="row">
 
+        <div class="col">
+            <div class="mb-3">
+                <div class="classInput">
+                    <label class="form-label" asp-for="Name">Nome: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Name" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <div class="classInput">
+                    <label class="form-label" asp-for="Professor">Professor: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Professor" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Professor)
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="classInput">
-            <label class="form-label" asp-for="Name">Nome: </label>
-            <input class="form-control" id="formGroupExampleInput" asp-for="Name" />
-            <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Name)
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="classInput">
+                        <label class="form-label" asp-for="CargaHorario">Carga Horária:</label>
+                        <input class="form-control" id="formGroupExampleInput" asp-for="CargaHorario" />
+                        <div class="error-danger">
+                            @Html.ValidationMessageFor(m => m.CargaHorario)
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="classInput">
-            <label class="form-label" asp-for="Professor">Professor: </label>
-            <input class="form-control" id="formGroupExampleInput" asp-for="Professor" />
-            <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.Professor)
-            </div>
-        </div>
-    </div>
+            <div class="col">
+                <div class="mb-3">
 
-    <div class="row">
-        <div class="classInput">
-            <label class="form-label" asp-for="CargaHorario">Carga Horária:</label>
-            <input class="form-control" id="formGroupExampleInput" asp-for="CargaHorario" />
-            <div class="error-danger">
-                @Html.ValidationMessageFor(m => m.CargaHorario)
+                    <div class="classInput">
+                        <label class="form-label" asp-for="Descricao">Descricao: </label>
+                        <input class="form-control" id="formGroupExampleInput" asp-for="Descricao" />
+                        <div class="error-danger">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="classInput">
-            <label class="form-label" asp-for="Descricao">Descricao: </label>
-            <input class="form-control" id="formGroupExampleInput" asp-for="Descricao" />
-            <div class="error-danger">
-            </div>
-        </div>
-    </div>
 
-    <div class="d-grid gap-2 d-md-block mb-2">
-        <button asp-controller="Materia" asp-action="Adicionar" class="btn btn-info"><i class="fa-solid fa-pen"></i> Adicionar</button>
-        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar</a>
-    </div>
+        <div class="d-grid gap-2 d-md-block mb-2">
+            <button asp-controller="Materia" asp-action="Adicionar" class="btn btn-success"><i class="fa-solid fa-pen"></i> Adicionar</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
 </form>
 
