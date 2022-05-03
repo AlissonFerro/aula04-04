@@ -9,6 +9,6 @@
 <p>Você deseja excluir o Livro @Model.Nome?</p>
 <form method="post">
     <input type="hidden" asp-for="Id" readonly="readonly" />
-    <button asp-route-id="@Model.Id" asp-controller="Livro" asp-action="Excluir" class="Excluir">Excluir</button>
+    <button asp-route-id="@Model.Id" asp-controller="Livro" asp-action="btn btn-warning" class="Excluir">Excluir</button>
 </form>
-<a asp-controller="Livro" asp-action="ListarLivros"><button class="botaoPadrao">Cancelar</button></a>
+<a asp-controller="Livro" asp-action="ListarLivros"><button class="btn btn-secondary">Cancelar</button></a>

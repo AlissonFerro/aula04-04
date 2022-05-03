@@ -5,8 +5,8 @@
     ViewBag.Name = "Lista de Alunos";
 }
 
-<a asp-action="Formulario"><button class="botaoPadrao">Adicionar Aluno</button></a>
-<div class="table">
+<a asp-action="Formulario"><button class="btn btn-secondary">Adicionar Aluno</button></a>
+<div>
 
     @if (TempData.ContainsKey("Alterado"))
     {
@@ -17,7 +17,7 @@
         }
     }
 
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>Id</th>
             <th>Nome</th>
@@ -38,12 +38,12 @@
                     <td>@alunos.Email</td>
                     <td>@alunos.Idade</td>
                     <td>
-                        <a asp-route-id="@alunos.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
-                        <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                        <a asp-route-id="@alunos.Id" asp-action="FormularioEditar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
+                        <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                     </td>
                 </tr>
             }
         }
     </table>
 </div>
-<a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>
+<a href="/Home/Index"><button class="btn btn-secondary">Voltar</button></a>

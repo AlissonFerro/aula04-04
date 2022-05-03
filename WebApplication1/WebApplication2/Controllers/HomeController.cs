@@ -25,7 +25,6 @@ namespace WebApplication2.Controllers
             ModelState.Remove("Id");
             if (!ModelState.IsValid)
             {
-
                 return View("Formulario");
             }
 

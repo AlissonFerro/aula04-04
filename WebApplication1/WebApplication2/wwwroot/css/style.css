@@ -9,7 +9,11 @@
 body {
     font-family: 'Montserrat';
     font-size: 1.1rem;
-    margin: 10px 10px
+    margin: 0px 10px
+}
+
+body #context {
+    margin: 0px 10px
 }
 
 h1 {
@@ -71,25 +75,6 @@ body a {
     border-radius: 3px;
 }
 
-table {
-    border-collapse: collapse;
-    background: white;
-}
-
-    table tr {
-        padding: 60px;
-        height: 60px;
-    }
-
-    table td {
-        border: 1px solid black;
-        padding: 0px 10px;
-    }
-
-    table th {
-        border: 1px solid black;
-        background: white;
-    }
 
 input {
     height: 25px;

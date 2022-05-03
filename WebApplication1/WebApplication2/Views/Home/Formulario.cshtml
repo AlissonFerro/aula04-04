@@ -5,44 +5,64 @@
     ViewBag.Name = "Editar Aluno";
 }
 
+<div class="container-fluid">
 
-<form class="form-Cadastrar" method="post">
+    <form class="form-Cadastrar" method="post">
 
-    <div class="classInput">
-
-        <input type="hidden" asp-for="Id" />
-    </div>
-
-    <div class="classInput">
-        <label asp-for="Name">Nome: </label>
-        <input asp-for="Name" />
-        <div class="error-danger">
-            <span asp-validation-for="Name" class="text-danger"></span>
+        <div>
+            <input type="hidden" asp-for="Id" />
         </div>
-    </div>
-    <div class="classInput">
-        <label asp-for="Curso">Curso: </label>
-        <input asp-for="Curso" />
-        <div class="error-danger">
-            <span asp-validation-for="Curso" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="classInput">
-        <label asp-for="Email">E-mail:</label>
-        <input asp-for="Email" />
-        <div class="error-danger">
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="classInput">
-        <label asp-for="Idade">Idade: </label>
-        <input asp-for="Idade" />
-        <div class="error-danger">
-            <span asp-validation-for="Idade" class="text-danger"></span>
-        </div>
-    </div>
-    <button asp-controller="Home" asp-action="Adicionar" class="Editar"><i class="fa-solid fa-pen"></i> Adicionar</button>
-</form>
 
-<a asp-action="Index"><button class="botaoPadrao">Voltar</button></a>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Name">Nome: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Name" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Curso">Professor: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Curso" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Curso)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Email">E-mail:</label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Email" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Idade">Idade: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Idade" />
+                    <div class="error-danger">
+                        @Html.ValidationMessageFor(m => m.Idade)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 d-md-block mb-2">
+            <button asp-controller="Home" asp-action="Adicionar" class="btn btn-success"><i class="fa-solid fa-pen"></i> Adicionar</button>
+            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+
+</div>
+
+
 
