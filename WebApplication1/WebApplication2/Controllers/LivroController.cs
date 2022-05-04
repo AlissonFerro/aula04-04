@@ -22,15 +22,18 @@ namespace WebApplication2.Controllers
             {
                 if (Livro.ListaLivros[i].Nome == livro.Nome && livro.Id != Livro.ListaLivros[i].Id)
                 {
-                    string resposta = "Aluno já cadastrado";
+                    string resposta = "Livro já cadastrado";
                     return Content(resposta);
                 }
             }
             if (livro.Id == 0)
             {
                 livro.Id = Livro.ListaLivros.Count + 1;
+                decimal precoConvertido = Convert.ToDecimal(livro.Preco);
+                livro.Preco = precoConvertido;
+                livro.Ativo = true;
                 Livro.ListaLivros.Add(livro);
-                TempData["Alterado"] = true;
+                TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Livro cadastrado com sucesso";
                 return View("Listagem", Livro.ListaLivros);
             }
@@ -40,7 +43,7 @@ namespace WebApplication2.Controllers
                 livroAtualizado.Nome = livro.Nome;
                 livroAtualizado.Preco = livro.Preco;
                 livroAtualizado.QtdPag = livro.QtdPag;
-                TempData["Alterado"] = true;
+                TempData["Alterado"] = 2;
                 TempData["Mensagem"] = "Livro alterado com sucesso";
                 Livro.ListaLivros[livro.Id - 1] = livroAtualizado;
                 return View("Listagem", Livro.ListaLivros);
@@ -95,7 +98,7 @@ namespace WebApplication2.Controllers
 
         public IActionResult Excluir(int id)
         {
-            TempData["Alterado"] = true;
+            TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Livro excluido com sucesso";
             Livro.ListaLivros[id - 1].Ativo = false;
             return RedirectToAction("ListarLivros");

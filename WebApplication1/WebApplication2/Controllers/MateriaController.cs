@@ -53,6 +53,8 @@ namespace WebApplication2.Controllers
                 materia.Id = Materia.listagemMaterias.Count + 1;
                 materia.Ativo = true;
                 Materia.listagemMaterias.Add(materia);
+                TempData["Alterado"] = 1;
+                TempData["Mensagem"] = "Disciplina cadastrada com sucesso";
                 return View("Listagem", Materia.listagemMaterias);
             }
             else
@@ -64,6 +66,8 @@ namespace WebApplication2.Controllers
                 materiaAtualizada.CargaHorario = materia.CargaHorario;
                 materiaAtualizada.Name = materia.Name;
                 Materia.listagemMaterias[materia.Id-1] = materiaAtualizada;
+                TempData["Alterado"] = 2;
+                TempData["Mensagem"] = "Disciplina editada com sucesso";
                 return View("Listagem", Materia.listagemMaterias);
             }            
         } 
@@ -110,7 +114,7 @@ namespace WebApplication2.Controllers
 
         public IActionResult Excluir(int id)
         {
-            TempData["Alterado"] = true;
+            TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Matéria excluida com sucesso";
             Materia.listagemMaterias[id-1].Ativo = false;
             return RedirectToAction("ListarMaterias", Materia.listagemMaterias);

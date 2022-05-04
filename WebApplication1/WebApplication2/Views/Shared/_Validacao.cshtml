@@ -1,14 +1,4 @@
-﻿@using WebApplication2.Models;
-@model List<Aluno>;
-@{
-    ViewBag.Titulo = "Listar";
-    ViewBag.Name = "Lista de Alunos";
-}
-
-<a asp-action="Formulario" class="btn btn-secondary mb-2">Adicionar Aluno</a>
-<div>
-
-@if (TempData.ContainsKey("Alterado"))
+﻿@if (TempData.ContainsKey("Alterado"))
 {
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -49,34 +39,3 @@
         </div>
     }
 }
-
-    <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Curso</th>
-            <th>E-mail</th>
-            <th>Idade</th>
-            <th>Ação</th>
-        </tr>
-
-        @foreach (var alunos in Model)
-        {
-            @if (alunos.Ativo == true)
-            {
-                <tr>
-                    <td>@alunos.Id</td>
-                    <td>@alunos.Name</td>
-                    <td>@alunos.Curso</td>
-                    <td>@alunos.Email</td>
-                    <td>@alunos.Idade</td>
-                    <td>
-                        <a asp-route-id="@alunos.Id" asp-action="FormularioEditar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
-                        <a asp-route-id="@alunos.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
-                    </td>
-                </tr>
-            }
-        }
-    </table>
-</div>
-<a href="/Home/Index"><button class="btn btn-secondary">Voltar</button></a>
