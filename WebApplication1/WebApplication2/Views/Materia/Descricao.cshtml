@@ -8,9 +8,7 @@
 
 <div class="descricao">
 
-    <p>Id: @Model.Id</p>
-
-    <p>Nome: @Model.Name</p>
+     <p>Nome: @Model.Name</p>
 
     <p>Professor: @Model.Professor</p>
 
@@ -18,8 +16,8 @@
 
     <p>Descrição: @Model.Descricao</p>
 </div>
-<a asp-route-id="@Model.Id" asp-action="FormularioEditar" class="Editar"><i class="fa-solid fa-pen"></i> Editar</a>
-<a asp-route-id="@Model.Id" asp-action="FormularioExcluir" class="Excluir"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+<a asp-route-id="@Model.Id" asp-action="FormularioEditar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
+<a asp-route-id="@Model.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
 <br />
 <br />
-<a href="/Home/Index"><button class="botaoPadrao">Voltar</button></a>
+<a href="/Home/Index"><button class="btn btn-secondary">Voltar</button></a>

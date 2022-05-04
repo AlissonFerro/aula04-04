@@ -1,0 +1,17 @@
+﻿@using WebApplication2.Models;
+@model Ligacao;
+@{
+    ViewBag.Titulo = "Excluir";
+    ViewBag.Name = "Excluir Ligação";
+}
+
+
+<p>Você deseja excluir a ligação do @Model.NomeAluno?</p>
+<form method="post">
+    <input type="hidden" asp-for="Id" readonly="readonly" />
+
+    <div class="d-grid gap-2 d-md-block mb-2">
+        <button asp-route-id="@Model.Id" asp-controller="Ligacao" asp-action="Excluir" class="btn btn-danger">Excluir</button>
+        <a asp-controller="Ligacao" asp-action="ListarLigacoes"><button class="btn btn-secondary">Cancelar</button></a>
+    </div>
+</form>

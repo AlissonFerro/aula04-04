@@ -1,0 +1,39 @@
+﻿@using WebApplication2.Models;
+@model List<Ligacao>;
+@{
+    ViewBag.Titulo = "Listar";
+    ViewBag.Name = "Lista de Ligações";
+}
+
+<a asp-action="Formulario" class="btn btn-secondary mb-2">Adicionar Ligação</a>
+
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Assunto</th>
+            <th>Ação</th>
+        </tr>
+
+        @foreach (var ligacao in Model)
+        {
+            @if (ligacao.Ativo == true)
+            {
+                <tr>
+                    <td>@ligacao.Id</td>
+                    <td>@ligacao.NomeAluno</td>
+                    <td>@ligacao.Telefone</td>
+                    <td>@ligacao.Assunto</td>
+                    <td>
+                        <a asp-route-id="@ligacao.Id" asp-action="FormularioEditar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
+                        <a asp-route-id="@ligacao.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<a href="/Home/Index" class="btn btn-secondary">Voltar</a>

@@ -35,6 +35,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Ligacao/Erro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlnYWNhb1xFcnJvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Ligacao/Formulario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlnYWNhb1xGb3JtdWxhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Ligacao/FormularioExcluir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlnYWNhb1xGb3JtdWxhcmlvRXhjbHVpci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Ligacao/Listagem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlnYWNhb1xMaXN0YWdlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Livro/Erro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGl2cm9cRXJyby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -73,10 +89,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Shared/_Validacao.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGFjYW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Aluno/Documents/GitHub/aula04-04/WebApplication1/WebApplication2/Views/Shared/_ValidationScriptsPartial.cshtml]

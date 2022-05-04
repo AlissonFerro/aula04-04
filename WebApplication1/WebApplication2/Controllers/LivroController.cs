@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
@@ -29,9 +30,14 @@ namespace WebApplication2.Controllers
             if (livro.Id == 0)
             {
                 livro.Id = Livro.ListaLivros.Count + 1;
-                decimal precoConvertido = Convert.ToDecimal(livro.Preco);
-                livro.Preco = precoConvertido;
                 livro.Ativo = true;
+                string valor = livro.Preco;
+
+                CultureInfo culture = CultureInfo.CurrentCulture;
+                RegionInfo region = RegionInfo.CurrentRegion; //or new RegionInfo(...)
+                string formattedCurrency = string.Format(CultureInfo.CurrentCulture, "{0} {1:C2}", region.ISOCurrencySymbol, valor);
+
+                livro.Preco = formattedCurrency;
                 Livro.ListaLivros.Add(livro);
                 TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Livro cadastrado com sucesso";

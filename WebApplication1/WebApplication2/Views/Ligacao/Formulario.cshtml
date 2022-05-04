@@ -1,5 +1,5 @@
 ﻿@using WebApplication2.Models;
-@model Livro;
+@model Ligacao;
 @{
     ViewBag.Titulo = "Formulário";
 
@@ -17,28 +17,28 @@
             <div class="col">
 
                 <div class="mb-3">
-                    <label class="col-sm-5 col-form-label" asp-for="Nome">Nome: </label>
-                    <input class="form-control" id="formGroupExampleInput" asp-for="Nome" />
+                    <label class="col-sm-5 col-form-label" asp-for="NomeAluno">Nome: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="NomeAluno" />
                     <div class="error-danger">
-                        @Html.ValidationMessageFor(m => m.Nome)
+                        @Html.ValidationMessageFor(m => m.NomeAluno)
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="col-sm-5 col-form-label" asp-for="Preco">Preço: </label>
-                    <input class="form-control" id="formGroupExampleInput" asp-for="Preco" />
+                    <label class="col-sm-5 col-form-label" asp-for="Telefone">Telefone: </label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Telefone" />
                     <div class="error-danger">
-                        @Html.ValidationMessageFor(m => m.Preco)
+                        @Html.ValidationMessageFor(m => m.Telefone)
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="col-sm-5 col-form-label" asp-for="QtdPag">Quantidade de páginas:</label>
-                    <input class="form-control" id="formGroupExampleInput" asp-for="QtdPag" />
+                    <label class="col-sm-5 col-form-label" asp-for="Assunto">Assunto:</label>
+                    <input class="form-control" id="formGroupExampleInput" asp-for="Assunto" />
                     <div class="error-danger">
-                        @Html.ValidationMessageFor(m => m.QtdPag)
+                        @Html.ValidationMessageFor(m => m.Assunto)
                     </div>
                 </div>
             </div>
