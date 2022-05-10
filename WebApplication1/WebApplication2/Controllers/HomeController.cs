@@ -7,113 +7,103 @@ namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly EscolaContext _context;
+
+        public HomeController(EscolaContext context)
+        {
+            _context = context;
+        }
 
         public IActionResult Index()
         {
+            ViewBag.QtdAlunos = _context.Alunos.Count();
             return View();
         }
 
         public IActionResult ListarAlunos()
         {
-            return View("Listagem", Aluno.listagem);
+            return View("Listagem", _context.Alunos.ToList());
         }
 
-
+        
         public ActionResult Adicionar(Aluno aluno)
         {
-
             ModelState.Remove("Id");
             if (!ModelState.IsValid)
             {
                 return View("Formulario");
             }
 
-            for (int i = 0; Aluno.listagem.Count > i; i++)
+            Aluno alunoEncontrado = new Aluno();
+            alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == aluno.Id) ;
+
+            if(alunoEncontrado == null)
             {
-                if (Aluno.listagem[i].Email == aluno.Email && aluno.Id != Aluno.listagem[i].Id)
-                {
-                    string resposta = "Aluno já cadastrado";
-                    return Content(resposta);
-                }
-            }
-            if (aluno.Id == 0)
-            {
-                aluno.Id = Aluno.listagem.Count + 1;
-                aluno.Ativo = true;
-                Aluno.listagem.Add(aluno);
-                TempData["Alterado"] = 1;
-                TempData["Mensagem"] = "Aluno cadastrado com sucesso";
-                return View("Listagem", Aluno.listagem);
+                _context.Alunos.Add(aluno);
+                _context.SaveChanges();
+                return View("Listagem", _context.Alunos.ToList());
             }
             else
             {
-                Aluno alunoAtualizado = Aluno.listagem[aluno.Id - 1];
-                alunoAtualizado.Name = aluno.Name;
-                alunoAtualizado.Curso = aluno.Curso;
-                alunoAtualizado.Idade = aluno.Idade;
-                alunoAtualizado.Email = aluno.Email;
-                TempData["Alterado"] = 2;
-                TempData["Mensagem"] = "Aluno alterado com sucesso";
-                Aluno.listagem[aluno.Id - 1] = alunoAtualizado;
-                return View("Listagem", Aluno.listagem);
+                aluno.Ativo = true;
+                _context.Entry(alunoEncontrado).CurrentValues.SetValues(aluno);
+                _context.SaveChanges();
+                return View("Listagem", _context.Alunos.ToList());
             }
         }
 
         public IActionResult Formulario()
         {
-
             return View();
         }
+        
 
         public IActionResult FormularioEditar(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Aluno.listagem.Count; i++)
-            {
-                if (Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
-                {
-                    resultado = true;
-                }
-            }
-            if (!resultado)
+            Aluno alunoEncontrado = new Aluno();
+            alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            if (alunoEncontrado == null)
             {
                 return View("Erro", "Usuário não encontrado");
             }
 
-            Aluno alunoEncontrado = Aluno.listagem[id - 1];
             ViewBag.Name = "Editar Aluno";
             return View("Formulario", alunoEncontrado);
         }
 
+        
         public IActionResult FormularioExcluir(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Aluno.listagem.Count; i++)
-            {
-                if (Aluno.listagem[i].Id == id && Aluno.listagem[i].Ativo == true)
-                {
-                    resultado = true;
-                }
-            }
-            if (!resultado)
+            Aluno alunoEncontrado = new Aluno();
+            alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            
+            if (alunoEncontrado == null)
             {
                 string resposta = "Usuário não encontrado";
                 return View("Erro", resposta);
             }
 
-            Aluno alunoEncontrado = Aluno.listagem[id - 1];
             ViewBag.Name = "Excluir Aluno";
             return View("FormularioExcluir", alunoEncontrado);
         }
-
+        
         public IActionResult ExcluirAluno(int id)
         {
             TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Aluno excluído com sucesso";
-            Aluno.listagem[id - 1].Ativo = false;
+
+            Aluno alunoEncontrado = new Aluno();
+            alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
+
+            Aluno aluno = new Aluno();
+            aluno = alunoEncontrado;
+            aluno.Ativo = false;
+
+            _context.Entry(alunoEncontrado).CurrentValues.SetValues(aluno);
+            _context.SaveChanges();
             return RedirectToAction("ListarAlunos");
         }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,7 +1,11 @@
+using WebApplication2.Models;
+
 var builder = WebApplication.CreateBuilder();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<EscolaContext>();
 
 var app = builder.Build();
 
