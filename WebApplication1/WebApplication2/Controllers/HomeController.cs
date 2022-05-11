@@ -41,6 +41,8 @@ namespace WebApplication2.Controllers
             {
                 _context.Alunos.Add(aluno);
                 _context.SaveChanges();
+                TempData["Alterado"] = 1;
+                TempData["Mensagem"] = "Aluno cadastrado com sucesso";
                 return View("Listagem", _context.Alunos.ToList());
             }
             else
@@ -48,12 +50,15 @@ namespace WebApplication2.Controllers
                 aluno.Ativo = true;
                 _context.Entry(alunoEncontrado).CurrentValues.SetValues(aluno);
                 _context.SaveChanges();
+                TempData["Alterado"] = 2;
+                TempData["Mensagem"] = "Livro alterada com sucesso";
                 return View("Listagem", _context.Alunos.ToList());
             }
         }
 
         public IActionResult Formulario()
         {
+            ViewBag.Botao = "Adicionar";
             return View();
         }
         
@@ -62,12 +67,13 @@ namespace WebApplication2.Controllers
         {
             Aluno alunoEncontrado = new Aluno();
             alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
-            if (alunoEncontrado == null)
+            if (alunoEncontrado == null || alunoEncontrado.Ativo == false)
             {
-                return View("Erro", "Usuário não encontrado");
+                return View("Erro", "Aluno não encontrado");
             }
 
             ViewBag.Name = "Editar Aluno";
+            ViewBag.Botao = "Editar";
             return View("Formulario", alunoEncontrado);
         }
 
@@ -77,9 +83,9 @@ namespace WebApplication2.Controllers
             Aluno alunoEncontrado = new Aluno();
             alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
             
-            if (alunoEncontrado == null)
+            if (alunoEncontrado == null || alunoEncontrado.Ativo == false)
             {
-                string resposta = "Usuário não encontrado";
+                string resposta = "Aluno não encontrado";
                 return View("Erro", resposta);
             }
 

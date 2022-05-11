@@ -29,6 +29,7 @@ namespace WebApplication2.Controllers
               
         public IActionResult Formulario()
         {
+            ViewBag.Botao = "Adicionar";
             return View();
         }
         
@@ -47,6 +48,8 @@ namespace WebApplication2.Controllers
             {
                 _context.Materias.Add(materia);
                 _context.SaveChanges();
+                TempData["Alterado"] = 1;
+                TempData["Mensagem"] = "Disciplina cadastrado com sucesso";
                 return View("Listagem", _context.Materias.ToList());
             }
             else
@@ -54,39 +57,33 @@ namespace WebApplication2.Controllers
                 materia.Ativo = true;
                 _context.Entry(materiaEncontrada).CurrentValues.SetValues(materia);
                 _context.SaveChanges();
-                return View("Listagem", _context.Alunos.ToList());
+                TempData["Alterado"] = 2;
+                TempData["Mensagem"] = "Disciplina alterada com sucesso";
+                return View("Listagem", _context.Materias.ToList());
             }
         } 
         
 
-        /*
+        
         public IActionResult FormularioEditar(int id)
         {
-            bool resultado = false;
-
-            for (int i = 0; i < Materia.listagemMaterias.Count; i++)
-            {
-                if(Materia.listagemMaterias[i].Id == id && Materia.listagemMaterias[i].Ativo == true)
-                {
-                    resultado = true; break;
-                }
-            }
-            if (!resultado)
+            Materia materiaEncontrada = new Materia();
+            materiaEncontrada = _context.Materias.FirstOrDefault(a => a.Id == id);
+            if(materiaEncontrada == null || materiaEncontrada.Ativo == false)
             {
                 return View("Erro", "Disciplina não encontrada");
             }
-
-            Materia materiaEncontrada = Materia.listagemMaterias[id - 1];
+            ViewBag.Name = "Editar Disciplina";
+            ViewBag.Botao = "Editar";
             return View("Formulario", materiaEncontrada);
-        }
-        */
+        }        
 
         
         public IActionResult FormularioExcluir(int id)
         {
             Materia materiaEncontrada = new Materia();
             materiaEncontrada = _context.Materias.FirstOrDefault(a => a.Id == id);
-            if(materiaEncontrada == null)
+            if(materiaEncontrada == null || materiaEncontrada.Ativo == false)
             {
                 string resposta = "Disciplina não encontrada";
                 return View("Erro", resposta);

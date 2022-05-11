@@ -6,11 +6,18 @@ namespace WebApplication2.Controllers
 {
     public class LivroController : Controller
     {
-        public IActionResult ListarLivros()
+        private readonly EscolaContext _context;
+
+        public LivroController(EscolaContext context)
         {
-            return View("Listagem", Livro.ListaLivros);
+            _context = context;
         }
 
+        public IActionResult ListarLivros()
+        {
+            return View("Listagem", _context.Livros.ToList());
+        }
+        
         public IActionResult Adicionar(Livro livro)
         {
             ModelState.Remove("Id");
@@ -19,86 +26,56 @@ namespace WebApplication2.Controllers
                 return View("Formulario");
             }
 
-            for (int i = 0; Livro.ListaLivros.Count > i; i++)
+            Livro livroEncontrado = new Livro();
+            livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == livro.Id);
+            if(livroEncontrado == null)
             {
-                if (Livro.ListaLivros[i].Nome == livro.Nome && livro.Id != Livro.ListaLivros[i].Id)
-                {
-                    string resposta = "Livro já cadastrado";
-                    return Content(resposta);
-                }
-            }
-            if (livro.Id == 0)
-            {
-                livro.Id = Livro.ListaLivros.Count + 1;
-                livro.Ativo = true;
-                string valor = livro.Preco;
-
-                CultureInfo culture = CultureInfo.CurrentCulture;
-                RegionInfo region = RegionInfo.CurrentRegion; //or new RegionInfo(...)
-                string formattedCurrency = string.Format(CultureInfo.CurrentCulture, "{0} {1:C2}", region.ISOCurrencySymbol, valor);
-
-                livro.Preco = formattedCurrency;
-                Livro.ListaLivros.Add(livro);
+                _context.Livros.Add(livro);
+                _context.SaveChanges();
                 TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Livro cadastrado com sucesso";
-                return View("Listagem", Livro.ListaLivros);
+                return View("Listagem", _context.Livros.ToList());
             }
             else
             {
-                Livro livroAtualizado = Livro.ListaLivros[livro.Id - 1];
-                livroAtualizado.Nome = livro.Nome;
-                livroAtualizado.Preco = livro.Preco;
-                livroAtualizado.QtdPag = livro.QtdPag;
+                livro.Ativo = true;
+                _context.Entry(livroEncontrado).CurrentValues.SetValues(livro);
+                _context.SaveChanges();
                 TempData["Alterado"] = 2;
-                TempData["Mensagem"] = "Livro alterado com sucesso";
-                Livro.ListaLivros[livro.Id - 1] = livroAtualizado;
-                return View("Listagem", Livro.ListaLivros);
+                TempData["Mensagem"] = "Livro alterada com sucesso";
+                return View("Listagem", _context.Livros.ToList());
             }
         }
 
+        
         public IActionResult Formulario()
         {
+            ViewBag.Botao = "Adicionar";
             return View();
         }
 
         public IActionResult FormularioEditar(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Livro.ListaLivros.Count; i++)
-            {
-                if (Livro.ListaLivros[i].Id == id && Livro.ListaLivros[i].Ativo == true)
-                {
-                    resultado = true;
-                }
-            }
-            if (!resultado)
+            Livro livroEncontrado = new Livro();
+            livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
+            if(livroEncontrado == null || livroEncontrado.Ativo == false)
             {
                 return View("Erro", "Livro não encontrado");
             }
-
-            Livro livroEncontrado = Livro.ListaLivros[id - 1];
+            ViewBag.Botao = "Editar";
             ViewBag.Name = "Editar Livro";
             return View("Formulario", livroEncontrado);
         }
-
+        
         public IActionResult FormularioExcluir(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Livro.ListaLivros.Count; i++)
+            Livro livroEncontrado = new Livro();
+            livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
+            if(livroEncontrado == null || livroEncontrado.Ativo == false)
             {
-                if (Livro.ListaLivros[i].Id == id && Livro.ListaLivros[i].Ativo == true)
-                {
-                    resultado = true;
-                }
+                return View("Erro", "Livro não encontrado");
             }
-            if (!resultado)
-            {
-                string resposta = "Livro não encontrado";
-                return View("Erro", resposta);
-            }
-
-            Livro livroEncontrado = Livro.ListaLivros[id - 1];
-            ViewBag.Name = "Excluir Aluno";
+            ViewBag.Name = "Excluir Livro";
             return View("FormularioExcluir", livroEncontrado);
         }
 
@@ -106,7 +83,16 @@ namespace WebApplication2.Controllers
         {
             TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Livro excluido com sucesso";
-            Livro.ListaLivros[id - 1].Ativo = false;
+
+            Livro livroEncontrado = new Livro();
+            livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
+
+            Livro livro = new Livro();
+            livro = livroEncontrado;
+            livro.Ativo = false;
+
+            _context.Entry(livroEncontrado).CurrentValues.SetValues(livro);
+            _context.SaveChanges();
             return RedirectToAction("ListarLivros");
         }
     }

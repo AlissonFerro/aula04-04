@@ -5,9 +5,15 @@ namespace WebApplication2.Controllers
 {
     public class LigacaoController : Controller
     {
+        private readonly EscolaContext _context;
+
+        public LigacaoController(EscolaContext context)
+        {
+            _context = context;
+        }
         public IActionResult ListarLigacoes()
         {
-            return View("Listagem", Ligacao.listagem);
+            return View("Listagem", _context.Ligacao.ToList());
         }
 
         public IActionResult Adicionar(Ligacao ligacao)
@@ -18,70 +24,55 @@ namespace WebApplication2.Controllers
                 return View("Formulario");
             }
 
-            if (ligacao.Id == 0)
+            Ligacao ligacaoEncontrada = new Ligacao();
+            ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == ligacao.Id);
+            if(ligacaoEncontrada == null)
             {
-                ligacao.Id = Ligacao.listagem.Count + 1;
-                ligacao.Ativo = true;
-                Ligacao.listagem.Add(ligacao);
+                _context.Ligacao.Add(ligacao);
+                _context.SaveChanges();
                 TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Ligação cadastrado com sucesso";
-                return View("Listagem", Ligacao.listagem);
+                return View("Listagem", _context.Ligacao.ToList());
             }
             else
             {
-                Ligacao ligacaoAtualizado = Ligacao.listagem[ligacao.Id - 1];
-                ligacaoAtualizado.NomeAluno = ligacao.NomeAluno;
-                ligacaoAtualizado.Assunto = ligacao.Assunto;
-                ligacaoAtualizado.Telefone = ligacao.Telefone;
+                ligacao.Ativo = true;
+                _context.Entry(ligacaoEncontrada).CurrentValues.SetValues(ligacao);
+                _context.SaveChanges();
                 TempData["Alterado"] = 2;
                 TempData["Mensagem"] = "Ligação alterada com sucesso";
-                Ligacao.listagem[ligacao.Id - 1] = ligacaoAtualizado;
-                return View("Listagem", Ligacao.listagem);
+                return View("Listagem", _context.Ligacao.ToList());
             }
+
         }
 
         public IActionResult Formulario()
         {
+            ViewBag.Botao = "Adicionar";
             return View();
         }
-
+        
         public IActionResult FormularioEditar(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Livro.ListaLivros.Count; i++)
-            {
-                if (Ligacao.listagem[i].Id == id && Ligacao.listagem[i].Ativo == true)
-                {
-                    resultado = true;
-                }
-            }
-            if (!resultado)
+            Ligacao ligacaoEncontrada = new Ligacao();
+            ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == id);
+            if(ligacaoEncontrada == null || ligacaoEncontrada.Ativo == false)
             {
                 return View("Erro", "Ligação não encontrada");
             }
-
-            Ligacao ligacoesEncontrado = Ligacao.listagem[id - 1];
-            ViewBag.Name = "Editar Livro";
-            return View("Formulario", ligacoesEncontrado);
+            ViewBag.Botao = "Editar";
+            ViewBag.Name = "Editar Ligação";
+            return View("Formulario", ligacaoEncontrada);
         }
-
+        
         public IActionResult FormularioExcluir(int id)
         {
-            bool resultado = false;
-            for (int i = 0; i < Ligacao.listagem.Count; i++)
+            Ligacao ligacaoEncontrada = new Ligacao();
+            ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == id);
+            if(ligacaoEncontrada == null || ligacaoEncontrada.Ativo == false)
             {
-                if (Ligacao.listagem[i].Id == id && Ligacao.listagem[id].Ativo == true)
-                {
-                    resultado = true;
-                }
+                return View("Erro", "Ligação não encontrada");
             }
-            if (!resultado)
-            {
-                string resposta = "Ligacao não encontrada";
-                return View("Erro", resposta);
-            }
-
-            Ligacao ligacaoEncontrada = Ligacao.listagem[id - 1];
             ViewBag.Name = "Excluir Ligação";
             return View("FormularioExcluir", ligacaoEncontrada);
         }
@@ -90,7 +81,16 @@ namespace WebApplication2.Controllers
         {
             TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Ligação excluida com sucesso";
-            Ligacao.listagem[id - 1].Ativo = false;
+
+            Ligacao ligacaoEncontrada = new Ligacao();
+            ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == id);
+
+            Ligacao ligacao = new Ligacao();
+            ligacao = ligacaoEncontrada;
+            ligacao.Ativo = false;
+
+            _context.Entry(ligacaoEncontrada).CurrentValues.SetValues(ligacao);
+            _context.SaveChanges();
             return RedirectToAction("ListarLigacoes");
         }
     }
