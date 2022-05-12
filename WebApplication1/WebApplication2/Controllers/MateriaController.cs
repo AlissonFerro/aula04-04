@@ -61,15 +61,31 @@ namespace WebApplication2.Controllers
                 TempData["Mensagem"] = "Disciplina alterada com sucesso";
                 return View("Listagem", _context.Materias.ToList());
             }
-        } 
-        
+        }
 
-        
+        public IActionResult AtualizarInativo(int id)
+        {
+            Materia materiaEncontrado = new Materia();
+            materiaEncontrado = _context.Materias.FirstOrDefault(a => a.Id == id);
+
+            Materia materia = new Materia();
+            materia = materiaEncontrado;
+            materia.Ativo = true;
+
+            _context.Entry(materiaEncontrado).CurrentValues.SetValues(materia);
+            _context.SaveChanges();
+            return RedirectToAction("ListarMaterias");
+        }
+
         public IActionResult FormularioEditar(int id)
         {
             Materia materiaEncontrada = new Materia();
             materiaEncontrada = _context.Materias.FirstOrDefault(a => a.Id == id);
-            if(materiaEncontrada == null || materiaEncontrada.Ativo == false)
+            if (materiaEncontrada.Ativo == false)
+            {
+                return View("AtualizarInativo", materiaEncontrada);
+            }
+            if (materiaEncontrada == null || materiaEncontrada.Ativo == false)
             {
                 return View("Erro", "Disciplina não encontrada");
             }

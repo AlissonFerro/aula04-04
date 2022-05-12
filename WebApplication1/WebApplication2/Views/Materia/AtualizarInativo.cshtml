@@ -1,0 +1,20 @@
+﻿@using WebApplication2.Models;
+@model Materia;
+@{
+    ViewBag.Titulo = "Formulário";
+    ViewBag.Name = "Editar Disciplina";
+}
+
+<div class="container-fluid">
+
+    <p>Disciplina @Model.Nome excluida, deseja restaurar?</p>
+
+    <a asp-controller="Materia" asp-route-id="@Model.Id" asp-action="AtualizarInativo" class="btn btn-success"><i class="fa-solid fa-pen"></i>SIM</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-danger"><i class="fa-solid fa-pen"></i>NÃO</a>
+
+    <a asp-action="Materia" asp-action="ListarMaterias" class="btn btn-secondary">Voltar</a>
+
+</div>
+
+
+

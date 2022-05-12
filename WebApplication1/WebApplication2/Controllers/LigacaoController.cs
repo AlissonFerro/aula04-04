@@ -46,6 +46,20 @@ namespace WebApplication2.Controllers
 
         }
 
+        public IActionResult AtualizarInativo(int id)
+        {
+            Ligacao ligacaoEncontrado = new Ligacao();
+            ligacaoEncontrado = _context.Ligacao.FirstOrDefault(a => a.Id == id);
+
+            Ligacao ligacao = new Ligacao();
+            ligacao = ligacaoEncontrado;
+            ligacao.Ativo = true;
+
+            _context.Entry(ligacaoEncontrado).CurrentValues.SetValues(ligacao);
+            _context.SaveChanges();
+            return RedirectToAction("ListarLigacoes");
+        }
+
         public IActionResult Formulario()
         {
             ViewBag.Botao = "Adicionar";
@@ -56,7 +70,11 @@ namespace WebApplication2.Controllers
         {
             Ligacao ligacaoEncontrada = new Ligacao();
             ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == id);
-            if(ligacaoEncontrada == null || ligacaoEncontrada.Ativo == false)
+            if (ligacaoEncontrada.Ativo == false)
+            {
+                return View("AtualizarInativo", ligacaoEncontrada);
+            }
+            if (ligacaoEncontrada == null || ligacaoEncontrada.Ativo == false)
             {
                 return View("Erro", "Ligação não encontrada");
             }

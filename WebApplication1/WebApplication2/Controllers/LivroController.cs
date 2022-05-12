@@ -47,7 +47,20 @@ namespace WebApplication2.Controllers
             }
         }
 
-        
+        public IActionResult AtualizarInativo(int id)
+        {
+            Livro livroEncontrado = new Livro();
+            livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
+
+            Livro livro = new Livro();
+            livro = livroEncontrado;
+            livro.Ativo = true;
+
+            _context.Entry(livroEncontrado).CurrentValues.SetValues(livro);
+            _context.SaveChanges();
+            return RedirectToAction("ListarLivros");
+        }
+
         public IActionResult Formulario()
         {
             ViewBag.Botao = "Adicionar";
@@ -58,7 +71,11 @@ namespace WebApplication2.Controllers
         {
             Livro livroEncontrado = new Livro();
             livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
-            if(livroEncontrado == null || livroEncontrado.Ativo == false)
+            if (livroEncontrado.Ativo == false)
+            {
+                return View("AtualizarInativo", livroEncontrado);
+            }
+            if (livroEncontrado == null || livroEncontrado.Ativo == false)
             {
                 return View("Erro", "Livro não encontrado");
             }

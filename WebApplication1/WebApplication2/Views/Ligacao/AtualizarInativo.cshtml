@@ -1,0 +1,20 @@
+﻿@using WebApplication2.Models;
+@model Ligacao;
+@{
+    ViewBag.Titulo = "Formulário";
+    ViewBag.Name = "Editar Ligação";
+}
+
+<div class="container-fluid">
+
+    <p>Ligação do @Model.NomeAluno excluida, deseja restaurar?</p>
+
+    <a asp-controller="Ligacao" asp-route-id="@Model.Id" asp-action="AtualizarInativo" class="btn btn-success"><i class="fa-solid fa-pen"></i>SIM</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-danger"><i class="fa-solid fa-pen"></i>NÃO</a>
+
+    <a asp-action="Ligacao" asp-action="ListarLigacoes" class="btn btn-secondary">Voltar</a>
+
+</div>
+
+
+
