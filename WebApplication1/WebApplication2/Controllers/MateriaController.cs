@@ -20,9 +20,13 @@ namespace WebApplication2.Controllers
         {
             Materia materiaEncontrada = new Materia();
             materiaEncontrada = _context.Materias.FirstOrDefault(a => a.Id == Id);
-            if(materiaEncontrada == null)
+            if (materiaEncontrada == null)
             {
                 return View("Erro", "Disciplina não encontrada");
+            }
+            if (materiaEncontrada.Ativo == false)
+            {
+                return View("AtualizarInativo", materiaEncontrada);
             }
             return View("Descricao", materiaEncontrada);
         }
@@ -81,11 +85,8 @@ namespace WebApplication2.Controllers
         {
             Materia materiaEncontrada = new Materia();
             materiaEncontrada = _context.Materias.FirstOrDefault(a => a.Id == id);
-            if (materiaEncontrada.Ativo == false)
-            {
-                return View("AtualizarInativo", materiaEncontrada);
-            }
-            if (materiaEncontrada == null || materiaEncontrada.Ativo == false)
+            
+            if (materiaEncontrada == null)
             {
                 return View("Erro", "Disciplina não encontrada");
             }

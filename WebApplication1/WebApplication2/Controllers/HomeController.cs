@@ -67,13 +67,13 @@ namespace WebApplication2.Controllers
         {
             Aluno alunoEncontrado = new Aluno();
             alunoEncontrado = _context.Alunos.FirstOrDefault(a => a.Id == id);
-            if (alunoEncontrado.Ativo == false)
-            {
-                return View("AtualizarInativo", alunoEncontrado);
-            }
             if (alunoEncontrado == null)
             {
                 return View("Erro", "Aluno não encontrado");
+            }
+            if (alunoEncontrado.Ativo == false)
+            {
+                return View("AtualizarInativo", alunoEncontrado);
             }
 
             ViewBag.Name = "Editar Aluno";

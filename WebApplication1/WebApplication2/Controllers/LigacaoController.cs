@@ -70,13 +70,13 @@ namespace WebApplication2.Controllers
         {
             Ligacao ligacaoEncontrada = new Ligacao();
             ligacaoEncontrada = _context.Ligacao.FirstOrDefault(a => a.Id == id);
-            if (ligacaoEncontrada.Ativo == false)
-            {
-                return View("AtualizarInativo", ligacaoEncontrada);
-            }
             if (ligacaoEncontrada == null || ligacaoEncontrada.Ativo == false)
             {
                 return View("Erro", "Ligação não encontrada");
+            }
+            if (ligacaoEncontrada.Ativo == false)
+            {
+                return View("AtualizarInativo", ligacaoEncontrada);
             }
             ViewBag.Botao = "Editar";
             ViewBag.Name = "Editar Ligação";

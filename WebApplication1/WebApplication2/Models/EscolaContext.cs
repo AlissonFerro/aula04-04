@@ -11,7 +11,7 @@ namespace WebApplication2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=SNCCH01LABF114\TEW_SQLEXPRESS;Database=escola;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=SERVIDOR\SQLEXPRESS01;Database=escola;Trusted_Connection=True;");
         }
     }
 }

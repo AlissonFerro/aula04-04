@@ -71,13 +71,13 @@ namespace WebApplication2.Controllers
         {
             Livro livroEncontrado = new Livro();
             livroEncontrado = _context.Livros.FirstOrDefault(a => a.Id == id);
-            if (livroEncontrado.Ativo == false)
-            {
-                return View("AtualizarInativo", livroEncontrado);
-            }
             if (livroEncontrado == null || livroEncontrado.Ativo == false)
             {
                 return View("Erro", "Livro não encontrado");
+            }
+            if (livroEncontrado.Ativo == false)
+            {
+                return View("AtualizarInativo", livroEncontrado);
             }
             ViewBag.Botao = "Editar";
             ViewBag.Name = "Editar Livro";
